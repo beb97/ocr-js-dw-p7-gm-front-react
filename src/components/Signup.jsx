@@ -1,28 +1,36 @@
-  import '../styles/Signup.css';
+import "../styles/Signup.css";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-  function Signup() {
-      return (
-        <form action="" method="post">
-            <fieldset>
-            <legend>Inscription</legend>
+function Signup() {
+  const [pseudo, setPseudo] = useState("");
+  const [password, setPassword] = useState("");
 
-            <div class="lien">
-                <a href="login.html" >Vous avez déjà un compte ? <br/> Conenctez-vous !</a>
-            </div>
+  return (
+    <form action="" method="post">
+      <fieldset>
+        <legend>Inscription</legend>
 
-            <div class="field">
-                <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo" id="pseudo" required/>
-            </div>
-                <div class="field">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" required/>
-                </div>
-                <input type="submit"/>
-            </fieldset>
-        </form>
+        <div class="lien">
+          <Link to="/login">
+            Vous avez déjà un compte ? <br /> Cliquez-ici pour vous connecter
+          </Link>
+        </div>
 
-      );
-    }
-    
-    export default Signup;
+        <div class="field">
+          <label for="pseudo">Pseudo</label>
+          <input type="text" name="pseudo" id="pseudo" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" required />
+        </div>
+        <input type="submit" />
+      </fieldset>
+    </form>
+  );
+}
+
+function HandleSubmit() {}
+
+export default Signup;

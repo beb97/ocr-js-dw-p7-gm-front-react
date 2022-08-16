@@ -1,24 +1,62 @@
-import '../styles/Header.css';
+import "../styles/Header.css";
 
-function Header() {
-    return (
-        <header>
-            <a href="index.html" >
-                <h1><i className="fa fa-globe" aria-hidden="true">
-                    </i> <span id="logo-text">Groupomania</span>
-                </h1>
-            </a>
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./App";
 
-            <nav>
-                <ul className="nav">
-                    <li data-hidden-when="logedin" className="field"> <a href="login.html" className="nav-link"><i className="fa fa-letter"></i> Connexion</a> </li>
-                    <li data-hidden-when="logedin" className="field"> <a href="signup.html" className="nav-link"><i className="fa fa-letter"></i> Inscription</a> </li>
-                    <li data-hidden-when="logedoff" className="field"> <a className="nav-link"><i className="fa fa-letter"></i> Déconnexion</a> </li>
-                    <li data-hidden-when="logedoff" className="field"> <a href="user.html" className="nav-link" id="nav-user"> <span id="avatar">P</span></a></li>
-                </ul>
-            </nav>
-        </header>
-    );
+function Header(props) {
+  // const [isLoged, setIsLoged] = useState(false)
+  const {user, isLoged, setUser} = useContext(UserContext);
+
+  const LogOut = () => {
+    setUser(false);
+    localStorage.removeItem("expires");
+    localStorage.removeItem("token");
   }
-  
-  export default Header;
+
+  return (
+    <header>
+      <Link to="/">
+        <h1>
+          <i className="fa fa-globe" aria-hidden="true"></i>{" "}
+          <span id="logo-text">Groupomania</span>
+        </h1>
+      </Link>
+
+      <nav>
+        <ul className="nav">
+          { !isLoged() && (
+            <Link to="/login">
+              <li className="field">
+                <i className="fa fa-letter"></i> Connexion
+              </li>
+            </Link>
+          )}
+          {!isLoged() && (
+            <Link to="/signup">
+              <li className="field">
+                <i className="fa fa-letter"></i> Inscription
+              </li>
+            </Link>
+          )}
+          {isLoged() && (
+            <Link to="/login" onClick={LogOut}>
+              <li className="field">
+                <i className="fa fa-letter"></i> Déconnexion
+              </li>
+            </Link>
+          )}
+          {isLoged() && (
+            <Link to={`/user/${user.id}`} id="nav-user">
+              <li className="field">
+                <span id="avatar">p</span>
+              </li>
+            </Link>
+          )}
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
+export default Header;

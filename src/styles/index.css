@@ -63,6 +63,37 @@ label {
   margin-bottom: 1em;
 }
 
+.lien {
+  margin-bottom: 1em;
+}
+
+.toast {
+  background-color: rgba(176, 91, 91, 0.125);
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0.3em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+  padding: 1em;
+  transition: 0.5s;
+  opacity: 1;
+  row-gap: 1em;
+  column-gap: 1em;
+}
+
+.toast-close {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 0.3em;
+  padding: 0.5em 1em;
+}
+
+.toast-close:hover {
+  background-color: rgba(176, 91, 91, 1);
+  color: var(--bg-light);
+}
+
 input[type=submit] {
   background-color: var(--color-primary);
   color: var(--bg-light);

@@ -1,30 +1,74 @@
+import "../styles/Login.css";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Api from "../js/api";
+import { UserContext } from "./App";
 
-  import '../styles/Login.css';
+function Login(props) {
+  const [pseudo, setPseudo] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  let navigate = useNavigate();
 
-  function Login() {
-      return (
-        <form action="" method="post">
-            <fieldset>
-                <legend>Connexion</legend>
+  async function HandleSubmit(e) {
+    e.preventDefault();
 
-                <div class="lien">
-                <a href="signup.html" >C'est votre première connexion ? <br/> Inscrivez-vous !</a>
-                </div>
+    const crendentials = {
+      pseudo: pseudo,
+      password: password,
+    };
+    const response = await Api.login(crendentials);
+    console.log("submited : ", response);
 
-                <div class="field">
-                <label for="pseudo">Pseudo</label>
-                <input type="text" name="pseudo" id="pseudo" />
-                </div>
-
-                <div class="field">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" />
-                </div>
-
-                <input type="submit"/>
-            </fieldset>
-        </form>
-      );
+    if (response.status === 200) {
+      localStorage.setItem("expires", response.expires);
+      localStorage.setItem("token", response.token);
+      setUser(response.user);
+      navigate("/");
+    } else {
+      props.pushMessage(`Erreur ${response.status} : ${response.error}`);
     }
-    
-    export default Login;
+
+  }
+
+  return (
+    <form onSubmit={HandleSubmit}>
+      <fieldset>
+        <legend>Connexion</legend>
+
+        <div className="lien">
+          <Link to="/signup">
+            C'est votre première visite ? <br /> Cliquez ici pour créer votre
+            compte
+          </Link>
+        </div>
+
+        <div className="field">
+          <label htmlFor="pseudo">Pseudo</label>
+          <input
+            type="text"
+            name="pseudo"
+            id="pseudo"
+            placeholder="votre pseudo"
+            onChange={(e) => setPseudo(e.target.value)}
+          />
+        </div>
+
+        <div className="field">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="votre password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <input type="submit" />
+      </fieldset>
+    </form>
+  );
+}
+
+export default Login;

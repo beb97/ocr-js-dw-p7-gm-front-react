@@ -1,30 +1,29 @@
-import '../styles/Post.css';
-import DateHelper from '../js/date';
+import "../styles/Post.css";
+import DateHelper from "../js/date";
+import { Link, useParams } from "react-router-dom";
 
-function Post({post}) {
-return (
+function Post() {
+  const { id } = useParams();
+
+  return (
     <div className="card">
-    {/* <div class="card" onClick={HandleClick}> */}
-        <img
-            src="https://via.placeholder.com/100"
-            className="card-img-top"
-            alt="placeholder"
-        />
-        <div className="card-body">
-            <h2>{post.titre}</h2>
-        </div>
-        <div className="card-footer">
-            <a href="user.html" className="author">
-            {post.user.pseudo}
-            </a>
-            <span className="date">{DateHelper.timeSince(new Date(post.createdAt))}</span>
-        </div>
+      <img
+        src="https://via.placeholder.com/100"
+        className="card-img-top"
+        alt="placeholder"
+      />
+
+      <div className="card-body">
+        <h2>TITRE : ID = {id} </h2>
+      </div>
+
+      <div className="card-footer">
+        <Link to="/user" className="author">
+          USER
+        </Link>
+        <span className="date">{DateHelper.timeSince(new Date())}</span>
+      </div>
     </div>
-)
+  );
 }
-
-// function HandleClick(e) {
-
-// }
-
 export default Post;
