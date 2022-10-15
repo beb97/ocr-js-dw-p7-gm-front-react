@@ -1,0 +1,21 @@
+.fa-container {
+    color: var(--color-primary);
+}
+
+.smallfield {
+    border-radius: 0.3em;
+    border: 1px solid var(--bg-medium);
+    background-color: var(--bg-light);
+    padding: 0.5em;
+    margin-bottom: 1em;
+    margin-top: -1em;
+}
+
+.fa-container:hover {
+    background-color: var(--color-primary);
+    color: var(--bg-light);
+}
+
+.la, .las {
+    font-weight: 900;
+}

@@ -23,6 +23,24 @@ var Api = {
     return this.sendRequest(url, method, header, body);
   },
 
+  getPost(id) {
+    const url = config.apiUrlPost+'/'+id;
+    const method = "get";
+    const header = {};
+    this.addToken(header);
+    const body = undefined;
+    return this.sendRequest(url, method, header, body);
+  },
+
+  getUser(id) {
+    const url = config.apiUrlUser+'/'+id;
+    const method = "get";
+    const header = {};
+    this.addToken(header);
+    const body = undefined;
+    return this.sendRequest(url, method, header, body);
+  },
+
   getPosts() {
     const url = config.apiUrlPost;
     const method = "get";
@@ -36,6 +54,25 @@ var Api = {
     const url = config.apiUrlLogin;
     const method = "post";
     const header = {};
+    this.addJson(header)
+    const body = pBody;
+    return this.sendRequest(url, method, header, body);
+  },
+
+  signup(pBody) {
+    const url = config.apiUrlSignup;
+    const method = "post";
+    const header = {};
+    this.addJson(header)
+    const body = pBody;
+    return this.sendRequest(url, method, header, body);
+  },
+
+  setPost(pBody) {
+    const url = config.apiUrlPost;
+    const method = "post";
+    const header = {};
+    this.addToken(header);
     this.addJson(header)
     const body = pBody;
     return this.sendRequest(url, method, header, body);

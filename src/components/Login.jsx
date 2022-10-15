@@ -35,7 +35,6 @@ function Login(props) {
     <form onSubmit={HandleSubmit}>
       <fieldset>
         <legend>Connexion</legend>
-
         <div className="lien">
           <Link to="/signup">
             C'est votre première visite ? <br /> Cliquez ici pour créer votre
