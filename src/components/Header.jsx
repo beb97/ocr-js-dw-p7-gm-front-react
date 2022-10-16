@@ -18,7 +18,7 @@ function Header(props) {
     <header>
       <Link to="/">
         <h1>
-          <i className="fa fa-globe" aria-hidden="true"></i>{" "}
+          <i className="la la-globe" aria-hidden="true"></i>
           <span id="logo-text">Groupomania</span>
         </h1>
       </Link>
