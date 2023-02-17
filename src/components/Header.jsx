@@ -25,7 +25,7 @@ function Header(props) {
 
       <nav>
         <ul className="nav">
-          { false && (
+          { !(isLoged) && (
             <Link to="/login">
               <li className="field">
                 <i className="fa fa-letter"></i> Connexion

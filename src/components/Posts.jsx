@@ -43,7 +43,7 @@ function Posts(props) {
           return <Post post={post} key={index} />;
         })
       ) : (
-        <div></div>
+        <div>Chargement des posts</div>
       )}
     </section>
   );
